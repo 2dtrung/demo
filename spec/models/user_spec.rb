@@ -2,6 +2,16 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"
+  it 'first name invalid' do
+    user = User.create(
+      first_name: nil,
+      last_name: "Duc",
+      email: "trung@gmail.com",
+      password: "123456"
+    )
+    user.valid?
+    expect(user.errors[:first_name]).to include("can't be blank")
+  end
   it 'last name invalid' do
     user = User.create(
       first_name: "Trung",
